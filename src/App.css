@@ -116,6 +116,14 @@ main .header h1 {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+  display: none;
+}
+
+.search-modal.show {
+  display: block;
+  opacity: 1;
 }
 
 .modal {

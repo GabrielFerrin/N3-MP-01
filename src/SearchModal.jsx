@@ -5,12 +5,12 @@ import Button01 from './Button'
 
 const SearchModal = ({ showModal, setShowModal }) => {
   const handleClick = (e) => {
-    e.target.className === 'search-modal' && setShowModal('none')
+    e.target.className === 'search-modal show' && setShowModal('')
   }
 
   return (
-    <div className="search-modal" style={{ display: showModal }}
-      onClick={handleClick}>
+    <div className={`search-modal ${showModal}`} onClick={handleClick}
+      onKeyDown={(e) => e.key === 'Escape' && setShowModal('')}>
       <div className="modal">
         <ActionContainer className="action-container-modal">
           <Input01 tagName="LOCATION" placeholder="Add Location" />
@@ -20,7 +20,7 @@ const SearchModal = ({ showModal, setShowModal }) => {
           <Button01 showText='block' />
         </ActionContainer>
       </div>
-    </div>
+    </div >
   )
 }
 

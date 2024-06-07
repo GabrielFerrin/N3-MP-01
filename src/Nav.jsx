@@ -2,11 +2,11 @@ import ActionContainer from "./ActionContainer"
 import Input01 from "./Input01"
 import Button01 from "./Button"
 
-const Nav = () => {
+const Nav = ({ showModal, setShowModal }) => {
   return (
     <header>
       <img src="/logo.svg" alt="" />
-      <ActionContainer>
+      <ActionContainer showModal={showModal} setShowModal={setShowModal}>
         <Input01 tagName="LOCATION" placeholder="Add Location" />
         <div className="separator"></div>
         <Input01 tagName="GUESTS" placeholder="Add guests" />

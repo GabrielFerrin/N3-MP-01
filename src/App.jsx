@@ -2,32 +2,24 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import SearchModal from './SearchModal';
 import Nav from './Nav';
-import Card from './Card';
+import Main from './Main';
 
 function App() {
   const [theme, setTheme] = useState('light-theme');
   const [stays, setStays] = useState();
-  const [showModal, setShowModal] = useState('none');
+  const [showModal, setShowModal] = useState('');
   useEffect(() => {
     setStays(staysData);
   }, [])
 
   return (
-    <div onKeyDown={(e) => e.key === 'Escape' && setShowModal('none')}
+    <div onKeyDown={(e) => e.key === 'Escape' && setShowModal('')}
       className={`main ${theme}`}>
       <div className="wrapper">
         <SearchModal showModal={showModal} setShowModal={setShowModal} />
-        <Nav />
-        <main>
-          <div className="header">
-            <h1>Stays in Finland</h1>
-            <span>{stays?.length} stays</span>
-          </div>
-          <div className="cards">
-            {stays?.map((stay, i) => <Card key={i} stay={stay} />)}
-          </div>
-        </main>
-        <button onClick={() => setShowModal('block')}>Show Modal</button>
+        <Nav showModal={showModal} setShowModal={setShowModal}/>
+        <Main stays={stays} />
+        <button onClick={() => setShowModal('show')}>Show Modal</button>
         <button onClick={() => setTheme(theme === 'light-theme' ? 'dark-theme' : 'light-theme')}>
           Change Theme
         </button>
