@@ -4,13 +4,6 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-}
-
 .light-theme {
   --bg-01: #fff;
   --text-01: #333333;
@@ -31,20 +24,35 @@ html {
   transition: all .2s ease-in-out;
 }
 
+html {
+  scroll-behavior: smooth;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
 body,
 #root {
-  max-width: 1365px;
-  margin: 0 auto;
+  margin: 0;
   min-height: 100vh;
   min-width: 350px;
   position: relative;
 }
 
+body {
+  margin: 0;
+}
+
 /* MAIN */
 .main {
   background-color: var(--bg-01);
+  width: 100%;
   color: var(--text-01);
-  min-height: 100vh;
+}
+
+.main .wrapper {
+  max-width: 1370px;
+  margin: 0 auto;
   padding: 3rem;
 }
 
@@ -115,7 +123,7 @@ main .header h1 {
   padding: 3rem;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  max-width: 100%;
+  width: 100%;
   overflow-y: auto;
 }
 
@@ -218,7 +226,7 @@ main .header h1 {
   gap: 1rem;
 }
 
-.card img {
+.card .card-img {
   width: 100%;
   object-fit: cover;
 }
@@ -290,13 +298,18 @@ main .header h1 {
     align-self: center;
   }
 
+  header .action-container .button {
+    width: 100%;
+    max-width: none;
+  }
+
   .card {
-    width: 350px;
+    width: 100%;
   }
 }
 
 @media screen and (max-width: 450px) {
-  .main {
+  .main .wrapper {
     padding: 1rem;
   }
 }

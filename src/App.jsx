@@ -15,21 +15,23 @@ function App() {
   return (
     <div onKeyDown={(e) => e.key === 'Escape' && setShowModal('none')}
       className={`main ${theme}`}>
-      <SearchModal showModal={showModal} setShowModal={setShowModal} />
-      <Nav />
-      <main>
-        <div className="header">
-          <h1>Stays in Finland</h1>
-          <span>{stays?.length} stays</span>
-        </div>
-        <div className="cards">
-          {stays?.map((stay, i) => <Card key={i} stay={stay} />)}
-        </div>
-      </main>
-      <button onClick={() => setShowModal('block')}>Show Modal</button>
-      <button onClick={() => setTheme(theme === 'light-theme' ? 'dark-theme' : 'light-theme')}>
-        Change Theme
-      </button>
+      <div className="wrapper">
+        <SearchModal showModal={showModal} setShowModal={setShowModal} />
+        <Nav />
+        <main>
+          <div className="header">
+            <h1>Stays in Finland</h1>
+            <span>{stays?.length} stays</span>
+          </div>
+          <div className="cards">
+            {stays?.map((stay, i) => <Card key={i} stay={stay} />)}
+          </div>
+        </main>
+        <button onClick={() => setShowModal('block')}>Show Modal</button>
+        <button onClick={() => setTheme(theme === 'light-theme' ? 'dark-theme' : 'light-theme')}>
+          Change Theme
+        </button>
+      </div>
     </div>
   )
 }
