@@ -300,11 +300,12 @@ main .header h1 {
 
 /* toggle button */
 .toggle-wrapper {
-  width: 100%;
+  width: 150px;
   height: 55px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: -20px;
 }
 
 .toggle {
@@ -444,17 +445,20 @@ main .header h1 {
   }
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 710px) {
   header .action-container {
     flex-direction: column;
     align-self: center;
   }
-
   header .action-container .button {
     width: 100%;
     max-width: none;
   }
-
+  .toggle-wrapper {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 550px) {
   .card {
     width: 100%;
   }
