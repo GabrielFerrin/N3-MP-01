@@ -10,17 +10,27 @@ function App() {
   const [showModal, setShowModal] = useState('');
   useEffect(() => {
     setStays(staysData);
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setShowModal(''); // O la acción que quieras realizar
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    // Limpia el event listener cuando el componente se desmonte
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, [])
 
   return (
-    <div onKeyDown={(e) => e.key === 'Escape' && setShowModal('')}
-      className={`main ${theme}`}>
+    <div className={`main ${theme}`}>
       <div className="wrapper">
         <SearchModal showModal={showModal} setShowModal={setShowModal} />
-        <Nav showModal={showModal} setShowModal={setShowModal}/>
+        <Nav showModal={showModal} setShowModal={setShowModal}
+          theme={theme} setTheme={setTheme} />
         <Main stays={stays} />
-        <button onClick={() => setShowModal('show')}>Show Modal</button>
-        <button onClick={() => setTheme(theme === 'light-theme' ? 'dark-theme' : 'light-theme')}>
+        <button onClick={() => setTheme(theme === 'light-theme' ?
+          'dark-theme' : 'light-theme')}>
           Change Theme
         </button>
       </div>

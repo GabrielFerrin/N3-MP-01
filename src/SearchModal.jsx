@@ -9,8 +9,7 @@ const SearchModal = ({ showModal, setShowModal }) => {
   }
 
   return (
-    <div className={`search-modal ${showModal}`} onClick={handleClick}
-      onKeyDown={(e) => e.key === 'Escape' && setShowModal('')}>
+    <div className={`search-modal ${showModal}`} onClick={handleClick}>
       <div className="modal">
         <ActionContainer className="action-container-modal">
           <Input01 tagName="LOCATION" placeholder="Add Location" />
