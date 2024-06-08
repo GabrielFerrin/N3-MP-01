@@ -2,25 +2,25 @@ import ActionContainer from "./ActionContainer"
 import Input01 from "./Input01"
 import Button01 from "./Button"
 
-const Nav = ({ setShowModal, theme, setTheme }) => {
+const Nav = ({ setShowModal, theme, setTheme, locationFilter }) => {
   const switchTheme = (e) => {
     if (e.target.id !== 'lbl-btn' || e.target.id !== 'spn-btn')
-      if (theme === 'light-theme')
-        setTheme('dark-theme')
-      else
-        setTheme('light-theme')
+      if (theme === 'light-theme') setTheme('dark-theme')
+      else setTheme('light-theme')
   }
   return (
     <header>
       <img src="/logo.svg" alt="" />
       <ActionContainer setShowModal={setShowModal}>
-        <Input01 tagName="LOCATION" placeholder="Add Location" />
+        <Input01 tagName="LOCATION" placeholder="Add Location"
+          id="location-input" value={locationFilter} />
         <div className="separator"></div>
-        <Input01 tagName="GUESTS" placeholder="Add guests" />
+        <Input01 tagName="GUESTS" placeholder="Add guests"
+          id="guests-input" />
         <div className="separator"></div>
         <Button01 showText='none' color='transparent' />
         <div className="separator" id="separator"></div>
-        <div className="toggle-wrapper">
+        <div className="toggle-wrapper" id="toggle-wrapper">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none"
             viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"
             className={`theme-icon${theme === 'light-theme' ? '' : ' hide'}`}

@@ -7,16 +7,19 @@ import Main from './Main';
 function App() {
   const [theme, setTheme] = useState('light-theme');
   const [stays, setStays] = useState();
+  const [locations, setLocations] = useState();
   const [showModal, setShowModal] = useState('');
+  const [locationFilter, setLocationFilter] = useState('');
   useEffect(() => {
     setStays(staysData);
+    setLocations([...new Set(staysData
+      .map(stay => `${stay.city}, ${stay.country}`))]);
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
-        setShowModal(''); // O la acción que quieras realizar
+        setShowModal('');
       }
     };
     window.addEventListener('keydown', handleKeyDown);
-    // Limpia el event listener cuando el componente se desmonte
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
@@ -25,14 +28,12 @@ function App() {
   return (
     <div className={`main ${theme}`}>
       <div className="wrapper">
-        <SearchModal showModal={showModal} setShowModal={setShowModal} />
+        <SearchModal showModal={showModal} setShowModal={setShowModal}
+          locations={locations} locationFilter={locationFilter}
+          setLocationFilter={setLocationFilter} />
         <Nav showModal={showModal} setShowModal={setShowModal}
-          theme={theme} setTheme={setTheme} />
+          theme={theme} setTheme={setTheme} locationFilter={locationFilter} />
         <Main stays={stays} />
-        <button onClick={() => setTheme(theme === 'light-theme' ?
-          'dark-theme' : 'light-theme')}>
-          Change Theme
-        </button>
       </div>
     </div>
   )

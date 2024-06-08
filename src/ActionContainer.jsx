@@ -1,11 +1,17 @@
 const ActionContainer = ({ children, setShowModal }) => {
   const activateModal = (e) => {
-    console.log(e.target.tagName)
-    if (e.target.id !== 'toggle')
-      setShowModal('block')
+    let current = e.target
+    let hasParent = false
+    while (current) {
+      if (current.id === "toggle-wrapper" || current.id === "search-modal")
+        hasParent = true
+      current = current.parentElement
+    }
+    !hasParent && setShowModal('show')
   }
   return (
-    <div className="action-container" onClick={(e) => activateModal(e)}>
+    <div className="action-container" onClick={(e) => activateModal(e)}
+      click="false">
       {children}
     </div>
   )
