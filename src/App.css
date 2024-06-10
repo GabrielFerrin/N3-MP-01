@@ -7,6 +7,7 @@
 .light-theme {
   --bg-01: #fff;
   --text-01: #333333;
+  --text-02: #afafaf;
   --separator: #F2F2F2;
   --box-shadow: #0000001A;
   --outline: #5a5a5a;
@@ -167,7 +168,11 @@ main .header h1 {
   overflow-y: auto;
 }
 
-.input01 {
+.input-wrapper {
+  flex-grow: 1;
+}
+
+.input {
   height: 55px;
   padding-left: 1.6rem;
   gap: .2rem;
@@ -188,7 +193,7 @@ main .header h1 {
   }
 }
 
-.input01 span {
+.input span {
   font-family: Mulish;
   font-size: 9px;
   font-weight: 800;
@@ -198,7 +203,7 @@ main .header h1 {
 }
 
 
-.input01 input {
+.input input {
   font-family: Mulish;
   font-size: 14px;
   font-weight: 400;
@@ -253,6 +258,8 @@ main .header h1 {
 .guests-options {
   position: relative;
   width: fit-content;
+  display: flex;
+  flex-direction: column;
 }
 
 /* CARDS */
@@ -459,6 +466,7 @@ main .header h1 {
   padding-top: 5px;
   display: flex;
   flex-direction: column;
+  width: 35%;
 }
 
 .location-item {
@@ -471,7 +479,7 @@ main .header h1 {
   gap: .5rem;
   height: 55px;
   padding: 0 1.5rem;
-  border-radius: 12px;
+
   &:hover {
     cursor: pointer;
     background-color: var(--hover);
@@ -480,6 +488,60 @@ main .header h1 {
 
 .location-icon {
   color: var(--text-01);
+}
+
+.counter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.5rem;
+  font-family: Mulish;
+}
+
+.counter-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 50px;
+}
+
+.counter .counter-title {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.counter .counter-desc {
+  font-weight: 300;
+  font-size: 12px;
+  color: var(--text-02);
+}
+
+.counter .counter-value {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.counter .sign-icon {
+  color: var(--tg-shade);
+  border: 1.5px solid currentColor;
+  border-radius: .2rem;
+  transition: .1s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    transform: scale(.9);
+  }
+}
+
+.counter .sign-icon-line {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-miterlimit: 10;
+  stroke-width: 40px;
 }
 
 @media screen and (max-width: 768px) {

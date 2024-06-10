@@ -8,31 +8,25 @@ function App() {
   const [theme, setTheme] = useState('light-theme');
   const [stays, setStays] = useState();
   const [locations, setLocations] = useState();
+  const [locationKey, setLocationKey] = useState('');
   const [showModal, setShowModal] = useState('');
-  const [locationFilter, setLocationFilter] = useState('');
   useEffect(() => {
     setStays(staysData);
     setLocations([...new Set(staysData
       .map(stay => `${stay.city}, ${stay.country}`))]);
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        setShowModal('');
-      }
-    };
+    const handleKeyDown = (e) => e.key === 'Escape' && setShowModal('');
     window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, [])
 
   return (
     <div className={`main ${theme}`}>
       <div className="wrapper">
         <SearchModal showModal={showModal} setShowModal={setShowModal}
-          locations={locations} locationFilter={locationFilter}
-          setLocationFilter={setLocationFilter} />
+          locations={locations} locationKey={locationKey}
+          setLocationKey={setLocationKey} />
         <Nav showModal={showModal} setShowModal={setShowModal}
-          theme={theme} setTheme={setTheme} locationFilter={locationFilter} />
+          theme={theme} setTheme={setTheme} />
         <Main stays={stays} />
       </div>
     </div>
