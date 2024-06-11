@@ -2,17 +2,18 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import SearchModal from './SearchModal';
 import Nav from './Nav';
-import Main from './Main';
+import MyMain from './MyMain.jsx';
 
 function App() {
   const [theme, setTheme] = useState('light-theme');
   const [stays, setStays] = useState();
   const [locations, setLocations] = useState();
   const [locationKey, setLocationKey] = useState('');
-  const [guestsKey, setGuestsKey] = useState();
+  const [guestsKey, setGuestsKey] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [adultsCount, setAdultsCount] = useState(0);
+  const [childrenCount, setChildrenCount] = useState(0);
   useEffect(() => {
-    setStays(staysData);
     setLocations([...new Set(staysData
       .map(stay => `${stay.city}, ${stay.country}`))]);
     const handleKeyDown = (e) => e.key === 'Escape' && setShowModal(false);
@@ -33,12 +34,14 @@ function App() {
           <SearchModal showModal={showModal} setShowModal={setShowModal}
             locations={locations} locationKey={locationKey}
             guestsKey={guestsKey} setLocationKey={setLocationKey}
-            setGuestsKey={setGuestsKey} />
+            setGuestsKey={setGuestsKey} setAdultsCount={setAdultsCount}
+            adultsCount={adultsCount} childrenCount={childrenCount}
+            setChildrenCount={setChildrenCount}  />
         }
         <Nav showModal={showModal} setShowModal={setShowModal}
           theme={theme} setTheme={setTheme} locationKey={locationKey}
           guestsKey={guestsKey} />
-        <Main stays={stays} />
+        <MyMain stays={stays} />
       </div>
     </div>
   )

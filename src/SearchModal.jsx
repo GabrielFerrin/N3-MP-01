@@ -8,14 +8,13 @@ import LocationItem from './LocationItem'
 import Counter from './Counter'
 
 const SearchModal = ({ showModal, setShowModal, locations, setLocationKey,
-  locationKey, guestsKey, setGuestsKey }) => {
+  locationKey, guestsKey, setGuestsKey, adultsCount, childrenCount,
+  setAdultsCount, setChildrenCount }) => {
   const [showLocations, setShowLocations] = useState(false);
   const [showGuests, setShowGuests] = useState(false);
   const [filteredLocations, setFilteredLocations] = useState(locations);
   const [locationsWidth, setlocationsWidth] = useState(0);
   const [guestsWidth, setGuestsWidth] = useState(0);
-  const [adultsCount, setAdultsCount] = useState(0);
-  const [childrenCount, setChildrenCount] = useState(0);
   const separator = useRef(null)
   const locationInput = useRef(null)
   const guestsInput = useRef(null)

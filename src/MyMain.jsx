@@ -1,6 +1,6 @@
 import Card from './Card';
 
-const Main = ({ stays }) => {
+const MyMain = ({ stays }) => {
   return (
     <main>
       <div className="header">
@@ -16,4 +16,4 @@ const Main = ({ stays }) => {
   )
 }
 
-export default Main;
+export default MyMain;
