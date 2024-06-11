@@ -33,9 +33,9 @@ const SearchModal = ({ showModal, setShowModal, locations, setLocationKey,
     return () => { window.removeEventListener('resize', handleResize); };
   }, [showModal])
   useEffect(() => {
-    !adultsCount && !childrenCount ? setGuestsKey('') :
-      setGuestsKey(adultsCount + childrenCount)
-  }, [adultsCount, childrenCount])
+    console.log(adultsCount || childrenCount ? true : false);
+    (adultsCount || childrenCount) && setGuestsKey(adultsCount + childrenCount);
+  }, [adultsCount, childrenCount]);
   const handleOnClick = (e) => {
     if (e.target.className === 'search-modal') {
       setShowModal(false)
@@ -62,9 +62,7 @@ const SearchModal = ({ showModal, setShowModal, locations, setLocationKey,
   const onChangeGuests = (value) => {
     setAdultsCount(0);
     setChildrenCount(0);
-    setTimeout(() => {
-      setGuestsKey(value);
-    }, 10);
+    setGuestsKey(value);
   }
   return (
     <div className={`search-modal`} onClick={handleOnClick}
