@@ -81,6 +81,7 @@ body {
 .main {
   background-color: var(--bg-01);
   width: 100%;
+  min-height: 100vh;
   color: var(--text-01);
 }
 

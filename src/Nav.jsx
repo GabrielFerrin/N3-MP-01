@@ -2,8 +2,8 @@ import ActionContainer from "./ActionContainer"
 import Input from "./Input"
 import Button from "./Button"
 
-const Nav = ({ setShowModal, theme, setTheme, locationFilter,
-  locationKey, guestsKey }) => {
+const Nav = ({ setShowModal, theme, setTheme, locationKey,
+  guestsKey }) => {
   const switchTheme = (e) => {
     if (e.target.id !== 'lbl-btn' || e.target.id !== 'spn-btn')
       if (theme === 'light-theme') setTheme('dark-theme')
