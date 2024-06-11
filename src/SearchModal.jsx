@@ -2,18 +2,20 @@ import React from 'react'
 import { hasParent } from './helpers'
 import Input from './Input'
 import ActionContainer from './ActionContainer'
-import Button01 from './Button'
+import Button from './Button'
 import { useState, useRef, useEffect } from 'react'
 import LocationItem from './LocationItem'
 import Counter from './Counter'
 
 const SearchModal = ({ showModal, setShowModal, locations, setLocationKey,
-  locationKey }) => {
+  locationKey, guestsKey, setGuestsKey }) => {
   const [showLocations, setShowLocations] = useState(false);
   const [showGuests, setShowGuests] = useState(false);
   const [filteredLocations, setFilteredLocations] = useState(locations);
   const [locationsWidth, setlocationsWidth] = useState(0);
   const [guestsWidth, setGuestsWidth] = useState(0);
+  const [adultsCount, setAdultsCount] = useState(0);
+  const [childrenCount, setChildrenCount] = useState(0);
   const separator = useRef(null)
   const locationInput = useRef(null)
   const guestsInput = useRef(null)
@@ -27,10 +29,14 @@ const SearchModal = ({ showModal, setShowModal, locations, setLocationKey,
       guestsInput.current &&
         setGuestsWidth(guestsInput.current.clientWidth);
     };
-    window.addEventListener('resize', handleResize);
     handleResize();
+    window.addEventListener('resize', handleResize);
     return () => { window.removeEventListener('resize', handleResize); };
-  }, [])
+  }, [showModal])
+  useEffect(() => {
+    !adultsCount && !childrenCount ? setGuestsKey('') :
+      setGuestsKey(adultsCount + childrenCount)
+  }, [adultsCount, childrenCount])
   const handleOnClick = (e) => {
     if (e.target.className === 'search-modal show') {
       setShowModal('')
@@ -48,11 +54,21 @@ const SearchModal = ({ showModal, setShowModal, locations, setLocationKey,
       setShowLocations(false)
     }
   }
-  const onChange = (value) => {
+  const onChangeLocation = (value) => {
     setFilteredLocations(locations.filter((location) =>
       location.toLowerCase().includes(value.toLowerCase())))
     value === '' && setFilteredLocations(locations)
     setLocationKey(value)
+  }
+  const onChangeGuests = (value) => {
+    setAdultsCount(0);
+    setChildrenCount(0);
+    setTimeout(() => {
+      setGuestsKey(value);
+    }, 10);
+  }
+  const onButtonClick = (e) => {
+    hasParent(e.target, 'button') && setShowModal('')
   }
   return (
     <div className={`search-modal ${showModal}`} onClick={handleOnClick}
@@ -61,16 +77,16 @@ const SearchModal = ({ showModal, setShowModal, locations, setLocationKey,
         <ActionContainer className="action-container-modal">
           <div className="input-wrapper" ref={locationInput}>
             <Input tagName="LOCATION" placeholder="Add Location"
-              id="modal-location-input" onFocus={onFocus} onChange={onChange}
-              locationKey={locationKey} />
+              id="modal-location-input" onFocus={onFocus} onChange={onChangeLocation}
+              value={locationKey} />
           </div>
           <div className="separator" ref={separator}></div>
           <div className="input-wrapper" ref={guestsInput}>
-            <Input tagName="GUESTS" placeholder="Add guests" value=""
-              id="modal-guests-input" onFocus={onFocus} />
+            <Input tagName="GUESTS" placeholder="Add guests" value={guestsKey}
+              id="modal-guests-input" onFocus={onFocus} onChange={onChangeGuests} />
           </div>
           <div className="separator"></div>
-          <Button01 showText='block' />
+          <Button showText='block' onClick={onButtonClick} />
         </ActionContainer>
         <div className="locations"
           style={{
@@ -89,8 +105,12 @@ const SearchModal = ({ showModal, setShowModal, locations, setLocationKey,
             left: separator.current?.offsetLeft - 45 || 0,
             width: guestsWidth + 'px'
           }}>
-          <Counter title="Adults" desc="Ages 13 or above" />
-          <Counter title="Children" desc="Ages 2–12" />
+          <Counter title="Adults" desc="Ages 13 or above"
+            count={adultsCount}
+            setCount={setAdultsCount} />
+          <Counter title="Children" desc="Ages 2–12"
+            count={childrenCount}
+            setCount={setChildrenCount} />
         </div>
       </div>
     </div >

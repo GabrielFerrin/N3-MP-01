@@ -1,8 +1,9 @@
 import ActionContainer from "./ActionContainer"
 import Input from "./Input"
-import Button01 from "./Button"
+import Button from "./Button"
 
-const Nav = ({ setShowModal, theme, setTheme, locationFilter }) => {
+const Nav = ({ setShowModal, theme, setTheme, locationFilter,
+  locationKey, guestsKey }) => {
   const switchTheme = (e) => {
     if (e.target.id !== 'lbl-btn' || e.target.id !== 'spn-btn')
       if (theme === 'light-theme') setTheme('dark-theme')
@@ -10,15 +11,15 @@ const Nav = ({ setShowModal, theme, setTheme, locationFilter }) => {
   }
   return (
     <header>
-      <img src="/logo.svg" alt="" />
+      <a href="#"><img src="/logo.svg" alt="" /></a>
       <ActionContainer setShowModal={setShowModal}>
         <Input tagName="LOCATION" placeholder="Add Location"
-          id="location-input" value={locationFilter} />
+          id="location-input" value={locationKey} />
         <div className="separator"></div>
         <Input tagName="GUESTS" placeholder="Add guests"
-          id="guests-input" />
+          id="guests-input" value={guestsKey} />
         <div className="separator"></div>
-        <Button01 showText='none' color='transparent' />
+        <Button showText='none' color='transparent' />
         <div className="separator" id="separator"></div>
         <div className="toggle-wrapper" id="toggle-wrapper">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none"

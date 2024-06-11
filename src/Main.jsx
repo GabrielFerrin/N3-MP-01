@@ -1,6 +1,6 @@
 import Card from './Card';
 
-const Main = ({ stays}) => {
+const Main = ({ stays }) => {
     return (
         <main>
             <div className="header">

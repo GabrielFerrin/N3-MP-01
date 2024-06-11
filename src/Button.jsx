@@ -1,12 +1,12 @@
 import SearchIcon from "./SearchIcon"
 
-const Button01 = ({ showText }) => {
+const Button = ({ showText, onClick = null }) => {
   return (
-    <div className="button">
+    <div className="button" id="button" onClick={onClick && onClick} >
       <SearchIcon />
       <span style={{ display: showText }}>Search</span>
     </div>
   )
 }
 
-export default Button01
+export default Button

@@ -9,6 +9,7 @@ function App() {
   const [stays, setStays] = useState();
   const [locations, setLocations] = useState();
   const [locationKey, setLocationKey] = useState('');
+  const [guestsKey, setGuestsKey] = useState();
   const [showModal, setShowModal] = useState('');
   useEffect(() => {
     setStays(staysData);
@@ -18,15 +19,22 @@ function App() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [])
-
+  useEffect(() => {
+    setStays(staysData.filter(stay => {
+      return (stay.city.toLowerCase() + ', ' + stay.country.toLowerCase())
+        .includes(locationKey.toLowerCase())
+    }));
+  }, [locationKey, guestsKey])
   return (
     <div className={`main ${theme}`}>
       <div className="wrapper">
         <SearchModal showModal={showModal} setShowModal={setShowModal}
           locations={locations} locationKey={locationKey}
-          setLocationKey={setLocationKey} />
+          guestsKey={guestsKey} setLocationKey={setLocationKey}
+          setGuestsKey={setGuestsKey} />
         <Nav showModal={showModal} setShowModal={setShowModal}
-          theme={theme} setTheme={setTheme} />
+          theme={theme} setTheme={setTheme} locationKey={locationKey}
+          guestsKey={guestsKey} />
         <Main stays={stays} />
       </div>
     </div>

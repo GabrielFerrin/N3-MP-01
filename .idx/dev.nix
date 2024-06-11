@@ -4,8 +4,13 @@
     pkgs.nodejs_20
   ];
   idx.extensions = [
-    "svelte.svelte-vscode"
-    "vue.volar"
+    "adpyke.codesnap"
+    "albert.TabOut"
+    "anteprimorac.html-end-tag-labels"
+    "Codeium.codeium"
+    "dsznajder.es7-react-js-snippets"
+    "eamodio.gitlens"
+    "formulahendry.auto-rename-tag"
   ];
   idx.previews = {
     previews = {
