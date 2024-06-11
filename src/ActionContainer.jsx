@@ -1,17 +1,14 @@
+import { hasParent } from "./helpers"
+
 const ActionContainer = ({ children, setShowModal }) => {
   const activateModal = (e) => {
-    let current = e.target
-    let hasParent = false
-    while (current) {
-      if (current.id === "toggle-wrapper" || current.id === "search-modal")
-        hasParent = true
-      current = current.parentElement
-    }
-    !hasParent && setShowModal('show')
+    !hasParent(e.target, 'toggle-wrapper') && setShowModal(true);
+    hasParent(e.target, 'button') && hasParent(e.target, 'search-modal')
+      && setShowModal(false);
   }
   return (
-    <div className="action-container" onClick={(e) => activateModal(e)}
-      click="false">
+    <div className="action-container" id="action-container"
+      onClick={(e) => activateModal(e)} click="false">
       {children}
     </div>
   )

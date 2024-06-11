@@ -38,8 +38,8 @@ const SearchModal = ({ showModal, setShowModal, locations, setLocationKey,
       setGuestsKey(adultsCount + childrenCount)
   }, [adultsCount, childrenCount])
   const handleOnClick = (e) => {
-    if (e.target.className === 'search-modal show') {
-      setShowModal('')
+    if (e.target.className === 'search-modal') {
+      setShowModal(false)
       setShowGuests(false)
       setShowLocations(false)
     }
@@ -67,14 +67,11 @@ const SearchModal = ({ showModal, setShowModal, locations, setLocationKey,
       setGuestsKey(value);
     }, 10);
   }
-  const onButtonClick = (e) => {
-    hasParent(e.target, 'button') && setShowModal('')
-  }
   return (
-    <div className={`search-modal ${showModal}`} onClick={handleOnClick}
+    <div className={`search-modal`} onClick={handleOnClick}
       id="search-modal">
       <div className="modal">
-        <div className="close-btn-wrapper" onClick={() => setShowModal('')}>
+        <div className="close-btn-wrapper" onClick={() => setShowModal(false)}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none"
             viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"
             className="close-modal-btn" width={17} height={17}>
@@ -82,7 +79,7 @@ const SearchModal = ({ showModal, setShowModal, locations, setLocationKey,
               d="M6 18 18 6M6 6l12 12" />
           </svg>
         </div>
-        <ActionContainer className="action-container-modal">
+        <ActionContainer className="action-container-modal" setShowModal={setShowModal}>
           <div className="input-wrapper" ref={locationInput}>
             <Input tagName="LOCATION" placeholder="Add Location"
               id="modal-location-input" onFocus={onFocus} onChange={onChangeLocation}
@@ -94,7 +91,7 @@ const SearchModal = ({ showModal, setShowModal, locations, setLocationKey,
               id="modal-guests-input" onFocus={onFocus} onChange={onChangeGuests} />
           </div>
           <div className="separator"></div>
-          <Button showText='block' onClick={onButtonClick} />
+          <Button showText='block' />
         </ActionContainer>
         <div className="locations"
           style={{
