@@ -33,8 +33,8 @@ const SearchModal = ({ showModal, setShowModal, locations, setLocationKey,
     return () => { window.removeEventListener('resize', handleResize); };
   }, [showModal])
   useEffect(() => {
-    console.log(adultsCount || childrenCount ? true : false);
-    (adultsCount || childrenCount) && setGuestsKey(adultsCount + childrenCount);
+    (adultsCount || childrenCount) &&
+      setGuestsKey(adultsCount + childrenCount);
   }, [adultsCount, childrenCount]);
   const handleOnClick = (e) => {
     if (e.target.className === 'search-modal') {
@@ -68,7 +68,8 @@ const SearchModal = ({ showModal, setShowModal, locations, setLocationKey,
     <div className={`search-modal`} onClick={handleOnClick}
       id="search-modal">
       <div className="modal">
-        <div className="close-btn-wrapper" onClick={() => setShowModal(false)}>
+        <div className="close-btn-wrapper"
+          onClick={() => setShowModal(false)}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none"
             viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"
             className="close-modal-btn" width={17} height={17}>
@@ -76,16 +77,18 @@ const SearchModal = ({ showModal, setShowModal, locations, setLocationKey,
               d="M6 18 18 6M6 6l12 12" />
           </svg>
         </div>
-        <ActionContainer className="action-container-modal" setShowModal={setShowModal}>
+        <ActionContainer className="action-container-modal"
+          setShowModal={setShowModal}>
           <div className="input-wrapper" ref={locationInput}>
             <Input tagName="LOCATION" placeholder="Add Location"
-              id="modal-location-input" onFocus={onFocus} onChange={onChangeLocation}
-              value={locationKey} />
+              id="modal-location-input" onFocus={onFocus}
+              onChange={onChangeLocation} value={locationKey} />
           </div>
           <div className="separator" ref={separator}></div>
           <div className="input-wrapper" ref={guestsInput}>
-            <Input tagName="GUESTS" placeholder="Add guests" value={guestsKey}
-              id="modal-guests-input" onFocus={onFocus} onChange={onChangeGuests} />
+            <Input tagName="GUESTS" placeholder="Add guests"
+              value={guestsKey} id="modal-guests-input"
+              onFocus={onFocus} onChange={onChangeGuests} />
           </div>
           <div className="separator"></div>
           <Button showText='block' />

@@ -16,7 +16,8 @@ function App() {
   useEffect(() => {
     setLocations([...new Set(staysData
       .map(stay => `${stay.city}, ${stay.country}`))]);
-    const handleKeyDown = (e) => e.key === 'Escape' && setShowModal(false);
+    const handleKeyDown = (e) => e.key === 'Escape' &&
+      setShowModal(false);
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [])
@@ -36,7 +37,7 @@ function App() {
             guestsKey={guestsKey} setLocationKey={setLocationKey}
             setGuestsKey={setGuestsKey} setAdultsCount={setAdultsCount}
             adultsCount={adultsCount} childrenCount={childrenCount}
-            setChildrenCount={setChildrenCount}  />
+            setChildrenCount={setChildrenCount} />
         }
         <Nav showModal={showModal} setShowModal={setShowModal}
           theme={theme} setTheme={setTheme} locationKey={locationKey}

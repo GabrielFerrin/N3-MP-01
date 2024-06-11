@@ -6,7 +6,9 @@ const Card = ({ stay }) => {
   const cardDet = beds === null ? type : `${type} . ${beds} beds`;
   const hide = superHost ? 'block' : 'none';
   return (
-    <div className="card" title={`Location: ${city}, ${country}\nMax guests: ${stay.maxGuests}`}>
+    <div className="card"
+      title=
+      {`Location: ${city}, ${country}\nMax guests: ${stay.maxGuests}`}>
       <img src={photo} alt="Stay photo" height={269} width={395}
         className="card-img" />
       <div className="card-section">

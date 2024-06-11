@@ -38,7 +38,7 @@
   --separator: #505050;
   --box-shadow: #ffffff44;
   --outline: #b1b1b1;
-  --contrast: rgb(228, 65, 0);
+  --contrast: rgb(255, 90, 25);
   --hover: #2c2c2c;
   transition: all .2s ease-in-out;
   /* toggle button */
