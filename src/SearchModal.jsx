@@ -74,6 +74,14 @@ const SearchModal = ({ showModal, setShowModal, locations, setLocationKey,
     <div className={`search-modal ${showModal}`} onClick={handleOnClick}
       id="search-modal">
       <div className="modal">
+        <div className="close-btn-wrapper" onClick={() => setShowModal('')}>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+            viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"
+            className="close-modal-btn" width={17} height={17}>
+            <path strokeLinecap="round" strokeLinejoin="round"
+              d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </div>
         <ActionContainer className="action-container-modal">
           <div className="input-wrapper" ref={locationInput}>
             <Input tagName="LOCATION" placeholder="Add Location"
