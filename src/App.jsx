@@ -13,6 +13,7 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [adultsCount, setAdultsCount] = useState(0);
   const [childrenCount, setChildrenCount] = useState(0);
+  
   useEffect(() => {
     setLocations([...new Set(staysData
       .map(stay => `${stay.city}, ${stay.country}`))]);
